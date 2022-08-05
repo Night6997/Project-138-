@@ -40,6 +40,12 @@ function modalLoaded(){
 
 }
 
+function gotPoses(){
+
+  
+
+}
+
 
 function draw(){
 
