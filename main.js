@@ -21,6 +21,11 @@ var ball = {
     dy:3
 }
 
+right_wrist_x="";
+left_wrist_x="";
+
+right_wrist_score="";
+
 function setup(){
   canvas=createCanvas(700,600);
   canvas.parent("canvas");
@@ -40,14 +45,34 @@ function modalLoaded(){
 
 }
 
-function gotPoses(){
+function gotPoses(results){
 
-  
+  if(results.length>0){
+    
+    console.log(results);
+    right_wrist_x=results[0].pose.rightWrist.x;
+    right_wrist_y=results[0].pose.rightWrist.y;
+    
+    right_wrist_score=results[0].pose.keypoints[10].score;
+
+    console.log("Right wrist x="+right_wrist_x+", right wrist y="+right_wrist_y);
+
+  }
+
 
 }
 
 
 function draw(){
+
+  if(right_wrist_score>0.20){
+
+    console.log(right_wrist_score);
+    fill("#4b0082");
+    stroke("#4b0082");
+    circle(right_wrist_x,right_wrist_y,20);
+
+  }
 
  background(0); 
 
